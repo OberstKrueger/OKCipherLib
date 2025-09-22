@@ -5,8 +5,10 @@ public protocol Cipher {
     /// The name of the cipher algorithm.
     var name: String { get }
 
-    /// Whether the cipher protocol requires a key for encyprtion and decryption.
+    /// Whether the cipher requires a key for encryption and decryption.
     var requiresKey: Bool { get }
+
+    init()
 
     /// Decrypts the text with an optional user-provided key.
     /// - Parameters:
@@ -34,7 +36,7 @@ public protocol Cipher {
 }
 
 /// Errors during cipher encryption and decryption
-enum CipherError: Error, LocalizedError {
+public enum CipherError: Error, LocalizedError {
     /// Throws when a key is required but one was not provided.
     case keyRequired
 
@@ -48,7 +50,7 @@ enum CipherError: Error, LocalizedError {
     case invalidOutput
 
     /// Descriptive error messages.
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .keyRequired:
             return "A key is required to encrypt or decrypt text."
