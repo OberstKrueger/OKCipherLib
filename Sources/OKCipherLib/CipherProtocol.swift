@@ -1,8 +1,12 @@
 import Foundation
+
 /// A protocol for implementing various cipher encryption and decryption schemes.
-protocol Cipher {
+public protocol Cipher {
     /// The name of the cipher algorithm.
     var name: String { get }
+
+    /// Whether the cipher protocol requires a key for encyprtion and decryption.
+    var requiresKey: Bool { get }
 
     /// Decrypts the text with an optional user-provided key.
     /// - Parameters:
